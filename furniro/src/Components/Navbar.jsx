@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { FaSearch, FaHeart, FaShoppingCart, FaUser } from "react-icons/fa";
 
 export default function Navbar() {
@@ -8,8 +9,8 @@ export default function Navbar() {
 
       {/* Links */}
       <div className="flex gap-8 text-gray-700">
-        <a href="#">Home</a>
-        <a href="#">Shop</a>
+        <Link to="/">Home</Link>
+        <Link to="/">Shop</Link>
         <a href="#">About</a>
         <a href="#">Contact</a>
       </div>
