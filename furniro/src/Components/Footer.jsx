@@ -1,3 +1,5 @@
+import { color } from "framer-motion";
+
 export default function Footer() {
   return (
     <div className="bg-gray-100 px-10 py-12 mt-20">
@@ -7,17 +9,19 @@ export default function Footer() {
         
         {/* Logo + Address */}
         <div>
-          <h1 className="text-xl font-bold mb-4">Furniro.</h1>
+          <h1 className="text-xl font-bold mb-4" style={{ color: "#B88E2F" }}>
+            Furniro
+          </h1>
           <p className="text-gray-500 text-sm leading-6">
-            400 University Drive Suite 200 Coral <br />
-            Gables, <br />
-            FL 33134 USA
+            46 Giri Road, Sathyamurthynagar<br />
+            Tnagar, Chennai<br />
+            TN 600017 India
           </p>
         </div>
 
         {/* Links */}
         <div>
-          <h2 className="text-gray-400 mb-4">Links</h2>
+          <h2 className="text-xl font-bold mb-4">Links</h2>
           <ul className="space-y-3 text-gray-700">
             <li>Home</li>
             <li>Shop</li>
@@ -28,7 +32,7 @@ export default function Footer() {
 
         {/* Help */}
         <div>
-          <h2 className="text-gray-400 mb-4">Help</h2>
+          <h2 className="text-xl font-bold mb-4">Help</h2>
           <ul className="space-y-3 text-gray-700">
             <li>Payment Options</li>
             <li>Returns</li>
@@ -38,7 +42,7 @@ export default function Footer() {
 
         {/* Newsletter */}
         <div>
-          <h2 className="text-gray-400 mb-4">Newsletter</h2>
+          <h2 className="text-xl font-bold mb-4">Newsletter</h2>
 
           <div className="flex items-center border-b border-gray-400">
             <input
@@ -55,7 +59,7 @@ export default function Footer() {
 
       {/* Divider */}
       <div className="border-t mt-10 pt-6 text-sm text-gray-500">
-        2023 furniro. All rights reserved
+        2026 furniro. All rights reserved
       </div>
     </div>
   );

@@ -5,7 +5,9 @@ export default function Navbar() {
   return (
     <div className="flex justify-between items-center px-10 py-4 shadow-sm">
       {/* Logo */}
-      <h1 className="text-xl font-bold">Furniro</h1>
+      <h1 className="text-xl font-bold" style={{ color: "#B88E2F" }}>
+        Furniro
+      </h1>
 
       {/* Links */}
       <div className="flex gap-8 text-gray-700">
