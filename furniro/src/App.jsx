@@ -10,6 +10,8 @@ import ShopPage from "./pages/Shop";
 import Product from "./pages/Product";
 import Contact from "./pages/Contact";
 import Blog from "./pages/Blog";
+import Comparison from "./pages/Comparison";
+import About from "./pages/About";
 
 const initialItems = [
   {
@@ -72,6 +74,8 @@ export default function App() {
         <Route path="/product" element={<Product />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/blog" element={<Blog />} />
+        <Route path="/comparison" element={<Comparison />} />
+        <Route path="/about" element={<About />} />
       </Route>
 
       {/* Pages with their own Navbar and Footer (or none) */}

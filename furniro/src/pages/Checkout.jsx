@@ -1,4 +1,4 @@
-﻿import { useState } from "react";
+import { useState } from "react";
 
 const CheckoutPage = ({ items, subtotal, onBackToCart, onPlaceOrder }) => {
   const [billing, setBilling] = useState({
@@ -307,7 +307,7 @@ const CheckoutPage = ({ items, subtotal, onBackToCart, onPlaceOrder }) => {
           </div>
           <div>
             <h4 className="font-bold">Free Shipping</h4>
-            <p className="text-sm text-gray-600">Order over 150 $</p>
+            <p className="text-sm text-gray-600">Order over ₹150</p>
           </div>
           <div>
             <h4 className="font-bold">24 / 7 Support</h4>

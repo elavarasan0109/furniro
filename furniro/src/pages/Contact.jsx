@@ -144,7 +144,7 @@ export default function Contact() {
             <FaShippingFast className="text-4xl text-gray-800" />
             <div>
               <h4 className="font-bold text-xl text-gray-800">Free Shipping</h4>
-              <p className="text-gray-500 text-sm">Order over 150 $</p>
+              <p className="text-gray-500 text-sm">Order over ₹150</p>
             </div>
           </div>
 

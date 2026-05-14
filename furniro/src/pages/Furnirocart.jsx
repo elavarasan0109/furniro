@@ -180,7 +180,7 @@ const FEATURES = [
       </svg>
     ),
     title: "Free Shipping",
-    sub: "Order over 150 $",
+    sub: "Order over ₹150",
   },
   {
     icon: (
