@@ -1,6 +1,14 @@
-﻿import { useState } from "react";
+import { useState } from "react";
+import { Routes, Route, Outlet } from "react-router-dom";
 import FurniroCart from "./pages/Furnirocart";
 import CheckoutPage from "./pages/Checkout";
+import Navbar from "./Components/Navbar";
+import Hero from "./Components/Hero";
+import Categories from "./Components/Categories";
+import Footer from "./Components/Footer";
+import ShopPage from "./pages/Shop";
+import Product from "./pages/Product";
+import Contact from "./pages/Contact";
 
 const initialItems = [
   {
@@ -12,8 +20,19 @@ const initialItems = [
   },
 ];
 
-function App() {
-  const [page, setPage] = useState("cart");
+function MainLayout() {
+  return (
+    <div className="flex flex-col min-h-screen">
+      <Navbar />
+      <div className="flex-grow">
+        <Outlet />
+      </div>
+      <Footer />
+    </div>
+  );
+}
+
+export default function App() {
   const [items, setItems] = useState(initialItems);
   const [successMessage, setSuccessMessage] = useState("");
 
@@ -29,15 +48,6 @@ function App() {
     setItems((prev) => prev.filter((item) => item.id !== id));
   };
 
-  const handleCheckout = () => {
-    setSuccessMessage("");
-    setPage("checkout");
-  };
-
-  const handleBackToCart = () => {
-    setPage("cart");
-  };
-
   const handlePlaceOrder = ({ firstName }) => {
     setSuccessMessage(
       firstName
@@ -45,47 +55,40 @@ function App() {
         : "Your order has been placed successfully."
     );
     setItems([]);
-    setPage("cart");
   };
 
-  return page === "cart" ? (
-    <FurniroCart
-      items={items}
-      subtotal={subtotal}
-      onQuantityChange={handleQtyChange}
-      onRemove={handleRemove}
-      onCheckout={handleCheckout}
-      successMessage={successMessage}
-    />
-  ) : (
-    <CheckoutPage
-      items={items}
-      subtotal={subtotal}
-      onBackToCart={handleBackToCart}
-      onPlaceOrder={handlePlaceOrder}
-    />
-  );
-}
-
-export default App;
-import Navbar from "./components/Navbar";
-import Hero from "./components/Hero";
-import Categories from "./components/Categories";
-import Footer from "./components/Footer";
-import ShopPage from "./pages/Shop";
-import Product from "./pages/Product";
-import { Routes, Route } from "react-router-dom";
-export default function App() {
   return (
-    <div>
-      <Navbar />
-      <Hero />
-      <Categories />
-      <Footer />
-      <Routes>
-        <Route path="/" element={<ShopPage />} />
+    <Routes>
+      {/* Pages with standard Navbar and Footer */}
+      <Route element={<MainLayout />}>
+        <Route path="/" element={
+          <>
+            <Hero />
+            <Categories />
+            <ShopPage />
+          </>
+        } />
         <Route path="/product" element={<Product />} />
-      </Routes>
-    </div>
+        <Route path="/contact" element={<Contact />} />
+      </Route>
+
+      {/* Pages with their own Navbar and Footer (or none) */}
+      <Route path="/cart" element={
+        <FurniroCart
+          items={items}
+          subtotal={subtotal}
+          onQuantityChange={handleQtyChange}
+          onRemove={handleRemove}
+          successMessage={successMessage}
+        />
+      } />
+      <Route path="/checkout" element={
+        <CheckoutPage
+          items={items}
+          subtotal={subtotal}
+          onPlaceOrder={handlePlaceOrder}
+        />
+      } />
+    </Routes>
   );
 }

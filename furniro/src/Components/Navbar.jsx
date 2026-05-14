@@ -12,7 +12,7 @@ export default function Navbar() {
         <Link to="/">Home</Link>
         <Link to="/">Shop</Link>
         <a href="#">About</a>
-        <a href="#">Contact</a>
+        <Link to="/contact">Contact</Link>
       </div>
 
       {/* Icons */}
