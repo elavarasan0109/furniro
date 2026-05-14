@@ -29,7 +29,7 @@ export default function ShopPage() {
     {
       id: 4,
       name: "Respira",
-      price: "₹1,500",
+      price: "₹1,900",
       image:
         "https://images.unsplash.com/photo-1517705008128-361805f42e86?q=80&w=800&auto=format&fit=crop",
       discount: "-10%",
