@@ -9,6 +9,7 @@ import Footer from "./Components/Footer";
 import ShopPage from "./pages/Shop";
 import Product from "./pages/Product";
 import Contact from "./pages/Contact";
+import Blog from "./pages/Blog";
 
 const initialItems = [
   {
@@ -70,6 +71,7 @@ export default function App() {
         } />
         <Route path="/product" element={<Product />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/blog" element={<Blog />} />
       </Route>
 
       {/* Pages with their own Navbar and Footer (or none) */}
