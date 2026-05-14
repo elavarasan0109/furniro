@@ -5,13 +5,9 @@ const NAV_LINKS = ["Home", "Shop", "About", "Contact"];
 
 function Navbar() {
   return (
-    <nav className="flex items-center justify-between px-8 py-4 bg-white shadow-sm sticky top-0 z-50">
+    <nav className="flex items-center justify-between px-8 py-4 shadow-sm sticky top-0 z-50" style={{ backgroundColor: "rgba(255,255,255,0.95)" }}>
       <div className="flex items-center gap-2">
-        <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-          <path d="M4 24L14 4L24 24" stroke="#B8860B" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d="M7.5 17H20.5" stroke="#B8860B" strokeWidth="2.5" strokeLinecap="round"/>
-        </svg>
-        <span className="font-bold text-xl tracking-tight text-gray-900" style={{ fontFamily: "'Georgia', serif" }}>
+        <span className="font-bold text-xl tracking-tight" style={{ fontFamily: "'Georgia', serif", color: "#B99128" }}>
           Furniro
         </span>
       </div>
@@ -56,15 +52,11 @@ function Navbar() {
 function HeroBanner() {
   return (
     <div
-      className="relative h-48 flex flex-col items-center justify-center bg-cover bg-center"
-      style={{ backgroundImage: "url('https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=1200&q=60')" }}
+      className="relative flex flex-col items-center justify-center bg-cover bg-center"
+      style={{ height: 280, backgroundImage: "url('https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=1920&q=95')", backgroundSize: "cover", backgroundPosition: "center center" }}
     >
-      <div className="absolute inset-0 bg-white/60" />
-      <div className="relative z-10 flex flex-col items-center">
-        <svg width="36" height="36" viewBox="0 0 28 28" fill="none" className="mb-1">
-          <path d="M4 24L14 4L24 24" stroke="#B8860B" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d="M7.5 17H20.5" stroke="#B8860B" strokeWidth="2.5" strokeLinecap="round"/>
-        </svg>
+      <div style={{ position: "absolute", inset: 0, backgroundColor: "rgba(255,255,255,0.72)" }} />
+      <div style={{ position: "relative", textAlign: "center" }}>
         <h1 className="text-4xl font-bold text-gray-900" style={{ fontFamily: "'Georgia', serif" }}>Cart</h1>
         <p className="text-sm text-gray-500 mt-1">
           <span className="text-gray-700 font-medium">Home</span>
@@ -195,14 +187,14 @@ const FEATURES = [
 
 function Features() {
   return (
-    <div className="bg-amber-50/60 py-10 px-8">
+    <div style={{ backgroundColor: "#B99128" }} className="py-10 px-8">
       <div className="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6">
         {FEATURES.map((f) => (
           <div key={f.title} className="flex items-center gap-3">
-            <div className="text-gray-800">{f.icon}</div>
+            <div style={{ color: "#fff" }}>{f.icon}</div>
             <div>
-              <p className="font-bold text-gray-800 text-sm">{f.title}</p>
-              <p className="text-xs text-gray-500">{f.sub}</p>
+              <p style={{ color: "#fff" }} className="font-bold text-sm">{f.title}</p>
+              <p style={{ color: "rgba(255,255,255,0.8)" }} className="text-xs">{f.sub}</p>
             </div>
           </div>
         ))}
@@ -253,30 +245,30 @@ function Footer() {
     <footer className="bg-white border-t border-gray-100 px-10 pt-12 pb-6">
       <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
         <div>
-          <p className="font-bold text-xl text-gray-900 mb-3" style={{ fontFamily: "'Georgia', serif" }}>Funiro.</p>
-          <p className="text-xs text-gray-400 leading-relaxed">
+          <p className="font-bold text-xl text-gray-900 mb-3" style={{ fontFamily: "'Georgia', serif", color: "#B88E2F" }}>Funiro.</p>
+          <p className="text-xs text-gray-500 font-medium leading-relaxed">
             400 University Drive Suite 200 Coral Gables,<br />FL 33134 USA
           </p>
         </div>
         <div>
-          <p className="text-xs font-semibold text-gray-400 mb-4 tracking-widest uppercase">Links</p>
+          <p className="text-xs font-bold text-gray-900 mb-4 tracking-widest uppercase">Links</p>
           {["Home", "Shop", "About", "Contact"].map((l) => (
-            <a key={l} href="#" className="block text-sm text-gray-700 hover:text-yellow-700 mb-2 transition-colors">{l}</a>
+            <a key={l} href="#" className="block text-sm text-gray-600 font-medium hover:text-yellow-700 mb-2 transition-colors">{l}</a>
           ))}
         </div>
         <div>
-          <p className="text-xs font-semibold text-gray-400 mb-4 tracking-widest uppercase">Help</p>
+          <p className="text-xs font-bold text-gray-900 mb-4 tracking-widest uppercase">Help</p>
           {["Payment Options", "Returns", "Privacy Policies"].map((l) => (
-            <a key={l} href="#" className="block text-sm text-gray-700 hover:text-yellow-700 mb-2 transition-colors">{l}</a>
+            <a key={l} href="#" className="block text-sm text-gray-600 font-medium hover:text-yellow-700 mb-2 transition-colors">{l}</a>
           ))}
         </div>
         <div>
-          <p className="text-xs font-semibold text-gray-400 mb-4 tracking-widest uppercase">Newsletter</p>
+          <p className="text-xs font-bold text-gray-900 mb-4 tracking-widest uppercase">Newsletter</p>
           <div className="flex items-center border-b border-gray-400 pb-1 gap-2">
             <input
               type="email"
               placeholder="Enter Your Email Address"
-              className="text-xs text-gray-500 flex-1 outline-none bg-transparent placeholder-gray-400"
+              className="text-xs text-gray-600 font-medium flex-1 outline-none bg-transparent placeholder-gray-400"
             />
             <button className="text-xs font-bold text-gray-700 hover:text-yellow-700 transition-colors tracking-wider uppercase">
               Subscribe

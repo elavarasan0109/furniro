@@ -8,7 +8,7 @@ const initialItems = [
     name: "Asgaard sofa",
     price: 250000,
     qty: 1,
-    image: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=120&q=80",
+    image: "https://images.unsplash.com/photo-1592078615290-033ee584e267?w=300&q=90",
   },
 ];
 
