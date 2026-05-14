@@ -13,7 +13,7 @@ export default function ShopPage() {
     {
       id: 2,
       name: "Leviosa",
-      price: "₹3,200",
+      price: "₹3,300",
       image:
         "https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?q=80&w=800&auto=format&fit=crop",
       discount: "-20%",
