@@ -1,6 +1,4 @@
-﻿import { useState } from "react";
-import { FiUser, FiSearch, FiHeart, FiShoppingCart, FiShield, FiTruck, FiHeadphones } from "react-icons/fi";
-import { GiTrophy } from "react-icons/gi";
+import { useState } from "react";
 
 const CheckoutPage = ({ items = [{ id: 1, name: "Asgaard sofa", qty: 1, price: 250000 }], subtotal = 250000, onBackToCart = () => {}, onPlaceOrder = () => {} }) => {
   const [billing, setBilling] = useState({
@@ -156,23 +154,24 @@ const CheckoutPage = ({ items = [{ id: 1, name: "Asgaard sofa", qty: 1, price: 2
       </section>
 
       {/* Features */}
-      
-<section style={{ backgroundColor: "#B99128", padding: "48px 24px" }}>
-  <div style={{ maxWidth: 1200, margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 24 }}>
-    {[
-      { icon: <GiTrophy size={26} />,     title: "High Quality",        desc: "crafted from top materials" },
-      { icon: <FiShield size={26} />,     title: "Warranty Protection", desc: "Over 2 years" },
-      { icon: <FiTruck size={26} />,      title: "Free Shipping",       desc: "Order over 150 $" },
-      { icon: <FiHeadphones size={26} />, title: "24 / 7 Support",      desc: "Dedicated support" },
-    ].map(f => (
-      <div key={f.title} style={{ display: "flex", alignItems: "center", gap: 16 }}>
-        <div style={{
-          display: "flex", alignItems: "center", justifyContent: "center",
-          width: 60, height: 60, borderRadius: "50%",
-          backgroundColor: "rgba(255,255,255,0.2)",
-          color: "#fff", flexShrink: 0
-        }}>
-          {f.icon}
+      <section className="bg-[#F9F1E7] py-10">
+        <div className="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          <div>
+            <h4 className="font-bold">High Quality</h4>
+            <p className="text-sm text-gray-600">crafted from top materials</p>
+          </div>
+          <div>
+            <h4 className="font-bold">Warranty Protection</h4>
+            <p className="text-sm text-gray-600">Over 2 years</p>
+          </div>
+          <div>
+            <h4 className="font-bold">Free Shipping</h4>
+            <p className="text-sm text-gray-600">Order over ₹150</p>
+          </div>
+          <div>
+            <h4 className="font-bold">24 / 7 Support</h4>
+            <p className="text-sm text-gray-600">Dedicated support</p>
+          </div>
         </div>
         <div>
           <h4 style={{ fontWeight: "bold", margin: "0 0 4px", fontSize: 15, color: "#fff" }}>{f.title}</h4>
