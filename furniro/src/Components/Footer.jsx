@@ -1,5 +1,3 @@
-import { color } from "framer-motion";
-
 export default function Footer() {
   return (
     <div className="bg-gray-100 px-10 py-12 mt-20">
@@ -15,7 +13,7 @@ export default function Footer() {
           <p className="text-gray-500 text-sm leading-6">
             46 Giri Road, Sathyamurthynagar<br />
             Tnagar, Chennai<br />
-            TN 600017 India
+            TN 600017, India
           </p>
         </div>
 
