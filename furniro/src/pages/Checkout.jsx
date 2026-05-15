@@ -1,290 +1,149 @@
 import { useState } from "react";
 
-const CheckoutPage = ({ items, subtotal, onBackToCart, onPlaceOrder }) => {
+const CheckoutPage = ({ items = [{ id: 1, name: "Asgaard sofa", qty: 1, price: 250000 }], subtotal = 250000, onBackToCart = () => {}, onPlaceOrder = () => {} }) => {
   const [billing, setBilling] = useState({
-    firstName: "",
-    lastName: "",
-    company: "",
-    country: "Sri Lanka",
-    address: "",
-    city: "",
-    province: "Western Province",
-    zip: "",
-    phone: "",
-    email: "",
-    note: "",
-    payment: "bank",
+    firstName: "", lastName: "", company: "", country: "Sri Lanka",
+    address: "", city: "", province: "Western Province",
+    zip: "", phone: "", email: "", note: "", payment: "bank",
   });
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
+  const handleChange = (e) => {
+    const { name, value } = e.target;
     setBilling((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    onPlaceOrder(billing);
-  };
+  const handleSubmit = () => onPlaceOrder(billing);
 
   return (
-    <div className="bg-[#FAF7F2] min-h-screen">
+    <div style={{ backgroundColor: "#FAF7F2", minHeight: "100vh", fontFamily: "Georgia, serif" }}>
+
       {/* Header */}
-      <header className="bg-white shadow-sm">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-          <h1 className="text-2xl font-bold text-[#B88E2F]">Furniro</h1>
-
-          <nav className="hidden md:flex gap-10 text-sm font-medium">
-            <a href="#" className="hover:text-[#B88E2F]">
-              Home
-            </a>
-            <a href="#" className="hover:text-[#B88E2F]">
-              Shop
-            </a>
-            <a href="#" className="hover:text-[#B88E2F]">
-              About
-            </a>
-            <a href="#" className="hover:text-[#B88E2F]">
-              Contact
-            </a>
+      <header style={{ backgroundColor: "#fff", boxShadow: "0 1px 4px rgba(0,0,0,0.08)" }}>
+        <div style={{ maxWidth: 1200, margin: "0 auto", padding: "16px 24px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+          <h1 style={{ fontSize: 26, fontWeight: "bold", color: "#B88E2F", margin: 0 }}>Furniro</h1>
+          <nav style={{ display: "flex", gap: 36, fontSize: 15, fontWeight: 500 }}>
+            {["Home", "Shop", "About", "Contact"].map(item => (
+              <a key={item} href="#" style={{ textDecoration: "none", color: "#222" }}
+                onMouseEnter={e => e.target.style.color = "#B88E2F"}
+                onMouseLeave={e => e.target.style.color = "#222"}>{item}</a>
+            ))}
           </nav>
-
-          <div className="flex gap-5 text-lg">
-            <span>👤</span>
-            <span>🔍</span>
-            <span>❤️</span>
-            <span>🛒</span>
+          <div style={{ display: "flex", gap: 20, color: "#222" }}>
+            <FiUser size={20} style={{ cursor: "pointer" }} />
+            <FiSearch size={20} style={{ cursor: "pointer" }} />
+            <FiHeart size={20} style={{ cursor: "pointer" }} />
+            <FiShoppingCart size={20} style={{ cursor: "pointer" }} />
           </div>
         </div>
       </header>
 
-      {/* Hero */}
-      <section className="bg-[#F5F5F5] py-14 text-center">
-        <h2 className="text-4xl font-bold mb-2">Checkout</h2>
-        <p className="text-gray-500">Home &gt; Checkout</p>
+      {/* Hero - NO icon, just title + breadcrumb */}
+      <section style={{
+        position: "relative",
+        height: 280,
+        backgroundImage: "url('https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=1920&q=95')",
+        backgroundSize: "cover",
+        backgroundPosition: "center center",
+        display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column",
+      }}>
+        <div style={{ position: "absolute", inset: 0, backgroundColor: "rgba(255,255,255,0.72)" }} />
+        <div style={{ position: "relative", textAlign: "center" }}>
+          <h2 style={{ fontSize: 38, fontWeight: "bold", margin: "0 0 8px", color: "#111" }}>Checkout</h2>
+          <p style={{ margin: 0, fontSize: 14, color: "#777" }}>
+            <span style={{ color: "#111", fontWeight: 500 }}>Home</span>
+            <span style={{ margin: "0 8px" }}>&gt;</span>
+            <span>Checkout</span>
+          </p>
+        </div>
       </section>
 
-      {/* Checkout Section */}
-      <section className="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 lg:grid-cols-2 gap-16">
-        {/* Billing Details */}
+      {/* Checkout Body */}
+      <section style={{ maxWidth: 1200, margin: "0 auto", padding: "60px 24px", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 60 }}>
+
+        {/* Billing */}
         <div>
-          <div className="flex items-center justify-between mb-10 gap-4">
+          <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", marginBottom: 36, gap: 16 }}>
             <div>
-              <h3 className="text-3xl font-semibold">Billing details</h3>
-              <p className="text-sm text-gray-500 mt-1">Complete your order information below.</p>
+              <h3 style={{ fontSize: 28, fontWeight: 600, margin: "0 0 6px" }}>Billing details</h3>
+              <p style={{ fontSize: 13, color: "#888", margin: 0 }}>Complete your order information below.</p>
             </div>
-            <button
-              type="button"
-              onClick={onBackToCart}
-              className="rounded-full border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 transition"
-            >
+            <button onClick={onBackToCart} style={{ border: "1px solid #ccc", borderRadius: 999, padding: "8px 18px", fontSize: 13, fontWeight: 500, color: "#444", background: "#fff", cursor: "pointer", whiteSpace: "nowrap" }}>
               Back to cart
             </button>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <div className="grid grid-cols-2 gap-5">
-              <div>
-                <label className="block mb-2 font-medium">First Name</label>
-                <input
-                  name="firstName"
-                  value={billing.firstName}
-                  onChange={handleChange}
-                  type="text"
-                  className="w-full border rounded-lg px-4 py-3 outline-none focus:border-[#B88E2F]"
-                  required
-                />
-              </div>
-
-              <div>
-                <label className="block mb-2 font-medium">Last Name</label>
-                <input
-                  name="lastName"
-                  value={billing.lastName}
-                  onChange={handleChange}
-                  type="text"
-                  className="w-full border rounded-lg px-4 py-3 outline-none focus:border-[#B88E2F]"
-                  required
-                />
-              </div>
+          <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
+              <Field label="First Name"  name="firstName" value={billing.firstName} onChange={handleChange} required />
+              <Field label="Last Name"   name="lastName"  value={billing.lastName}  onChange={handleChange} required />
             </div>
-
-            <div>
-              <label className="block mb-2 font-medium">Company Name (Optional)</label>
-              <input
-                name="company"
-                value={billing.company}
-                onChange={handleChange}
-                type="text"
-                className="w-full border rounded-lg px-4 py-3 outline-none focus:border-[#B88E2F]"
-              />
-            </div>
-
-            <div>
-              <label className="block mb-2 font-medium">Country / Region</label>
-              <select
-                name="country"
-                value={billing.country}
-                onChange={handleChange}
-                className="w-full border rounded-lg px-4 py-3 outline-none focus:border-[#B88E2F]"
-              >
-                <option>Sri Lanka</option>
-                <option>India</option>
-                <option>USA</option>
-              </select>
-            </div>
-
-            <div>
-              <label className="block mb-2 font-medium">Street address</label>
-              <input
-                name="address"
-                value={billing.address}
-                onChange={handleChange}
-                type="text"
-                className="w-full border rounded-lg px-4 py-3 outline-none focus:border-[#B88E2F]"
-                required
-              />
-            </div>
-
-            <div>
-              <label className="block mb-2 font-medium">Town / City</label>
-              <input
-                name="city"
-                value={billing.city}
-                onChange={handleChange}
-                type="text"
-                className="w-full border rounded-lg px-4 py-3 outline-none focus:border-[#B88E2F]"
-                required
-              />
-            </div>
-
-            <div>
-              <label className="block mb-2 font-medium">Province</label>
-              <select
-                name="province"
-                value={billing.province}
-                onChange={handleChange}
-                className="w-full border rounded-lg px-4 py-3 outline-none focus:border-[#B88E2F]"
-              >
-                <option>Western Province</option>
-                <option>Central Province</option>
-              </select>
-            </div>
-
-            <div>
-              <label className="block mb-2 font-medium">ZIP code</label>
-              <input
-                name="zip"
-                value={billing.zip}
-                onChange={handleChange}
-                type="text"
-                className="w-full border rounded-lg px-4 py-3 outline-none focus:border-[#B88E2F]"
-                required
-              />
-            </div>
-
-            <div>
-              <label className="block mb-2 font-medium">Phone</label>
-              <input
-                name="phone"
-                value={billing.phone}
-                onChange={handleChange}
-                type="text"
-                className="w-full border rounded-lg px-4 py-3 outline-none focus:border-[#B88E2F]"
-                required
-              />
-            </div>
-
-            <div>
-              <label className="block mb-2 font-medium">Email address</label>
-              <input
-                name="email"
-                value={billing.email}
-                onChange={handleChange}
-                type="email"
-                className="w-full border rounded-lg px-4 py-3 outline-none focus:border-[#B88E2F]"
-                required
-              />
-            </div>
-
-            <div>
-              <textarea
-                name="note"
-                value={billing.note}
-                onChange={handleChange}
-                placeholder="Additional information"
-                rows="4"
-                className="w-full border rounded-lg px-4 py-3 outline-none focus:border-[#B88E2F]"
-              />
-            </div>
-          </form>
+            <Field label="Company Name (Optional)" name="company"  value={billing.company}  onChange={handleChange} />
+            <SelectField label="Country / Region"  name="country"  value={billing.country}  onChange={handleChange} options={["Sri Lanka","India","USA"]} />
+            <Field label="Street address" name="address"  value={billing.address}  onChange={handleChange} required />
+            <Field label="Town / City"    name="city"     value={billing.city}     onChange={handleChange} required />
+            <SelectField label="Province" name="province" value={billing.province} onChange={handleChange} options={["Western Province","Central Province"]} />
+            <Field label="ZIP code"       name="zip"      value={billing.zip}      onChange={handleChange} required />
+            <Field label="Phone"          name="phone"    value={billing.phone}    onChange={handleChange} required />
+            <Field label="Email address"  name="email"    type="email" value={billing.email} onChange={handleChange} required />
+            <textarea
+              name="note" value={billing.note} onChange={handleChange}
+              placeholder="Additional information" rows={4}
+              style={{ width: "100%", border: "1px solid #ddd", borderRadius: 8, padding: "12px 16px", outline: "none", fontSize: 14, fontFamily: "inherit", resize: "vertical", boxSizing: "border-box" }}
+            />
+          </div>
         </div>
 
         {/* Order Summary */}
         <div>
-          <div className="bg-white p-8 rounded-xl shadow-sm">
-            <div className="flex justify-between border-b pb-4 mb-4">
-              <h4 className="font-semibold text-lg">Order summary</h4>
-              <span className="text-sm text-gray-500">{items.length} item(s)</span>
+          <div style={{ backgroundColor: "#fff", padding: 36, borderRadius: 16, boxShadow: "0 2px 12px rgba(0,0,0,0.07)" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", borderBottom: "1px solid #eee", paddingBottom: 16, marginBottom: 16 }}>
+              <h4 style={{ fontWeight: 600, fontSize: 18, margin: 0 }}>Order summary</h4>
+              <span style={{ fontSize: 13, color: "#888" }}>{items.length} item(s)</span>
             </div>
 
             {items.length === 0 ? (
-              <div className="text-sm text-gray-500">Your cart is empty. Please go back to the cart and add items before placing an order.</div>
+              <p style={{ fontSize: 13, color: "#888" }}>Your cart is empty.</p>
             ) : (
               <>
-                {items.map((item) => (
-                  <div key={item.id} className="flex justify-between items-center mb-3 text-gray-600">
-                    <p>{item.name} × {item.qty}</p>
-                    <p>Rs. {(item.price * item.qty).toLocaleString()}.00</p>
+                {items.map(item => (
+                  <div key={item.id} style={{ display: "flex", justifyContent: "space-between", marginBottom: 10, fontSize: 14, color: "#555" }}>
+                    <span>{item.name} × {item.qty}</span>
+                    <span>Rs. {(item.price * item.qty).toLocaleString()}.00</span>
                   </div>
                 ))}
 
-                <div className="flex justify-between mb-3">
-                  <p>Subtotal</p>
-                  <p>Rs. {subtotal.toLocaleString()}.00</p>
+                <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 10, fontSize: 14 }}>
+                  <span>Subtotal</span>
+                  <span>Rs. {subtotal.toLocaleString()}.00</span>
                 </div>
 
-                <div className="flex justify-between border-b pb-5 mb-5">
-                  <p className="font-semibold">Total</p>
-                  <p className="text-[#B88E2F] text-2xl font-bold">Rs. {subtotal.toLocaleString()}.00</p>
+                <div style={{ display: "flex", justifyContent: "space-between", borderBottom: "1px solid #eee", paddingBottom: 20, marginBottom: 20 }}>
+                  <span style={{ fontWeight: 600 }}>Total</span>
+                  <span style={{ color: "#B88E2F", fontSize: 22, fontWeight: "bold" }}>Rs. {subtotal.toLocaleString()}.00</span>
                 </div>
 
-                <div className="space-y-4">
-                  <label className="flex items-start gap-3">
-                    <input
-                      type="radio"
-                      name="payment"
-                      value="bank"
-                      checked={billing.payment === "bank"}
-                      onChange={handleChange}
-                    />
+                {[
+                  { value: "bank", label: "Direct Bank Transfer", desc: "Make your payment directly into our bank account." },
+                  { value: "cod",  label: "Cash On Delivery",     desc: "Pay when your order arrives." },
+                ].map(opt => (
+                  <label key={opt.value} style={{ display: "flex", alignItems: "flex-start", gap: 12, cursor: "pointer", marginBottom: 16 }}>
+                    <input type="radio" name="payment" value={opt.value} checked={billing.payment === opt.value} onChange={handleChange} style={{ marginTop: 3, accentColor: "#B88E2F" }} />
                     <div>
-                      <p className="font-medium">Direct Bank Transfer</p>
-                      <p className="text-sm text-gray-500">Make your payment directly into our bank account.</p>
+                      <p style={{ fontWeight: 500, margin: "0 0 2px", fontSize: 14 }}>{opt.label}</p>
+                      <p style={{ fontSize: 12, color: "#888", margin: 0 }}>{opt.desc}</p>
                     </div>
                   </label>
+                ))}
 
-                  <label className="flex items-start gap-3">
-                    <input
-                      type="radio"
-                      name="payment"
-                      value="cod"
-                      checked={billing.payment === "cod"}
-                      onChange={handleChange}
-                    />
-                    <div>
-                      <p className="font-medium">Cash On Delivery</p>
-                      <p className="text-sm text-gray-500">Pay when your order arrives.</p>
-                    </div>
-                  </label>
-                </div>
-
-                <p className="text-sm text-gray-500 mt-6 leading-6">Your personal data will be used to support your experience throughout this website.</p>
+                <p style={{ fontSize: 12, color: "#888", marginTop: 16, lineHeight: 1.7 }}>
+                  Your personal data will be used to support your experience throughout this website.
+                </p>
 
                 <button
-                  type="button"
                   onClick={handleSubmit}
-                  disabled={items.length === 0}
-                  className="mt-8 w-full border border-black py-4 rounded-xl hover:bg-black hover:text-white transition disabled:opacity-50 disabled:cursor-not-allowed"
+                  style={{ marginTop: 28, width: "100%", border: "1.5px solid #111", borderRadius: 12, padding: "16px 0", fontSize: 15, fontWeight: 500, background: "#fff", cursor: "pointer", fontFamily: "inherit" }}
+                  onMouseEnter={e => { e.target.style.background = "#111"; e.target.style.color = "#fff"; }}
+                  onMouseLeave={e => { e.target.style.background = "#fff"; e.target.style.color = "#111"; }}
                 >
                   Place order
                 </button>
@@ -314,52 +173,72 @@ const CheckoutPage = ({ items, subtotal, onBackToCart, onPlaceOrder }) => {
             <p className="text-sm text-gray-600">Dedicated support</p>
           </div>
         </div>
-      </section>
+        <div>
+          <h4 style={{ fontWeight: "bold", margin: "0 0 4px", fontSize: 15, color: "#fff" }}>{f.title}</h4>
+          <p style={{ fontSize: 13, color: "rgba(255,255,255,0.8)", margin: 0 }}>{f.desc}</p>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
 
       {/* Footer */}
-      <footer className="bg-white py-10 border-t">
-        <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-10">
+      <footer style={{ backgroundColor: "#fff", padding: "40px 24px 20px", borderTop: "1px solid #eee" }}>
+        <div style={{ maxWidth: 1200, margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 40 }}>
           <div>
-            <h2 className="text-2xl font-bold mb-4">Furniro.</h2>
-            <p className="text-gray-500 text-sm">400 University Drive Suite 200 Coral Gables, FL 33134 USA</p>
+            <h2 style={{ fontSize: 22, fontWeight: "bold", marginBottom: 16 }}>Furniro.</h2>
+            <p style={{ fontSize: 13, color: "#888", lineHeight: 1.7 }}>400 University Drive Suite 200 Coral Gables, FL 33134 USA</p>
           </div>
-
           <div>
-            <h4 className="font-semibold mb-4">Links</h4>
-            <ul className="space-y-3 text-gray-500">
-              <li>Home</li>
-              <li>Shop</li>
-              <li>About</li>
-              <li>Contact</li>
+            <h4 style={{ fontWeight: 600, marginBottom: 16, fontSize: 14 }}>Links</h4>
+            <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 12 }}>
+              {["Home","Shop","About","Contact"].map(l => <li key={l} style={{ fontSize: 13, color: "#888", cursor: "pointer" }}>{l}</li>)}
             </ul>
           </div>
-
           <div>
-            <h4 className="font-semibold mb-4">Help</h4>
-            <ul className="space-y-3 text-gray-500">
-              <li>Payment Options</li>
-              <li>Returns</li>
-              <li>Privacy Policies</li>
+            <h4 style={{ fontWeight: 600, marginBottom: 16, fontSize: 14 }}>Help</h4>
+            <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 12 }}>
+              {["Payment Options","Returns","Privacy Policies"].map(l => <li key={l} style={{ fontSize: 13, color: "#888", cursor: "pointer" }}>{l}</li>)}
             </ul>
           </div>
-
           <div>
-            <h4 className="font-semibold mb-4">Newsletter</h4>
-            <div className="flex border-b">
-              <input
-                type="email"
-                placeholder="Enter Your Email Address"
-                className="flex-1 outline-none py-2"
-              />
-              <button className="font-semibold text-sm">SUBSCRIBE</button>
+            <h4 style={{ fontWeight: 600, marginBottom: 16, fontSize: 14 }}>Newsletter</h4>
+            <div style={{ display: "flex", borderBottom: "1px solid #ccc", paddingBottom: 8 }}>
+              <input type="email" placeholder="Enter Your Email Address" style={{ flex: 1, outline: "none", border: "none", fontSize: 13, fontFamily: "inherit" }} />
+              <button style={{ fontWeight: 600, fontSize: 12, background: "none", border: "none", cursor: "pointer" }}>SUBSCRIBE</button>
             </div>
           </div>
         </div>
-
-        <div className="text-center text-sm text-gray-500 mt-10">2023 Furniro. All rights reserved</div>
+        <div style={{ textAlign: "center", fontSize: 12, color: "#aaa", marginTop: 36 }}>2023 Furniro. All rights reserved</div>
       </footer>
+
     </div>
   );
 };
+
+// Helpers
+const Field = ({ label, name, value, onChange, type = "text", required }) => (
+  <div>
+    <label style={{ display: "block", marginBottom: 8, fontWeight: 500, fontSize: 14 }}>{label}</label>
+    <input
+      name={name} value={value} onChange={onChange} type={type} required={required}
+      style={{ width: "100%", border: "1px solid #ddd", borderRadius: 8, padding: "12px 16px", outline: "none", fontSize: 14, fontFamily: "inherit", boxSizing: "border-box" }}
+      onFocus={e => e.target.style.borderColor = "#B88E2F"}
+      onBlur={e => e.target.style.borderColor = "#ddd"}
+    />
+  </div>
+);
+
+const SelectField = ({ label, name, value, onChange, options }) => (
+  <div>
+    <label style={{ display: "block", marginBottom: 8, fontWeight: 500, fontSize: 14 }}>{label}</label>
+    <select
+      name={name} value={value} onChange={onChange}
+      style={{ width: "100%", border: "1px solid #ddd", borderRadius: 8, padding: "12px 16px", outline: "none", fontSize: 14, fontFamily: "inherit", backgroundColor: "#fff" }}
+    >
+      {options.map(o => <option key={o}>{o}</option>)}
+    </select>
+  </div>
+);
 
 export default CheckoutPage;
