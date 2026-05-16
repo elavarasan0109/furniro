@@ -11,7 +11,7 @@ export default function Footer() {
             Furniro
           </h1>
           <p className="text-gray-500 text-sm leading-6">
-            46 Giri Road, Sathyamurthynagar<br />
+            46 Giri Road, Sathyamurthy Nagar<br />
             Tnagar, Chennai<br />
             TN 600017, India
           </p>
@@ -40,7 +40,7 @@ export default function Footer() {
 
         {/* Newsletter */}
         <div>
-          <h2 className="text-xl font-bold mb-4">Newsletter</h2>
+          <h2 className="text-xl font-bold mb-4">News Letter</h2>
 
           <div className="flex items-center border-b border-gray-400">
             <input
